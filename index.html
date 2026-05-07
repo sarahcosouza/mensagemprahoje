@@ -445,7 +445,9 @@
     }
 
     function garantirTamanhoMinimo(texto, minimo, complemento) {
-      return texto.length >= minimo ? texto : `${texto} ${complemento}`;
+      // Mantém apenas o texto curado da resposta.
+      // A complementação automática foi removida para evitar frases duplicadas ou artificiais.
+      return texto;
     }
 
     function formatarResposta(tema, dados) {
