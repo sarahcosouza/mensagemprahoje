@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Uma Palavra Pra Hoje</title>
+  <meta name="description" content="Uma mensagem bíblica para o seu momento." />
+  <style>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f8fafc;
+      color: #0f172a;
+    }
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 32px 20px 48px;
+      min-height: 100vh;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 56px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+    }
+    .brand-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 18px;
+      background: #0f172a;
+      color: #fff;
+      display: grid;
+      place-items: center;
+    }
+    nav a {
+      color: #475569;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 36px;
+      align-items: center;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #fff;
+      color: #475569;
+      border-radius: 999px;
+      padding: 8px 16px;
+      font-size: 14px;
+      font-weight: 600;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-size: clamp(40px, 7vw, 68px);
+      line-height: 0.96;
+      letter-spacing: -0.05em;
+      margin: 0 0 20px;
+    }
+    .subtitle {
+      font-size: 18px;
+      line-height: 1.75;
+      color: #475569;
+      max-width: 620px;
+      margin: 0 0 28px;
+    }
+    .search-box {
+      background: #fff;
+      border-radius: 28px;
+      padding: 12px;
+      box-shadow: 0 20px 45px rgba(15, 23, 42, 0.10);
+    }
+    .search-row {
+      display: flex;
+      gap: 12px;
+    }
+    .input-wrap { position: relative; flex: 1; }
+    .input-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #94a3b8;
+    }
+    input {
+      width: 100%;
+      height: 56px;
+      border: 1px solid #e2e8f0;
+      border-radius: 20px;
+      background: #f8fafc;
+      outline: none;
+      padding: 0 16px 0 44px;
+      font-size: 16px;
+    }
+    input:focus {
+      border-color: #94a3b8;
+      background: #fff;
+    }
+    button {
+      border: 0;
+      cursor: pointer;
+      font-family: inherit;
+      transition: transform 0.15s ease, background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    }
+    button:active { transform: scale(0.98); }
+    .primary-btn {
+      min-height: 56px;
+      border-radius: 20px;
+      background: #0f172a;
+      color: #fff;
+      font-weight: 700;
+      padding: 0 24px;
+      white-space: nowrap;
+    }
+    .primary-btn:hover { background: #334155; }
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+    }
+    .chip {
+      border: 1px solid #e2e8f0;
+      background: #fff;
+      color: #475569;
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .chip:hover {
+      border-color: #94a3b8;
+      color: #0f172a;
+    }
+    .card {
+      background: #fff;
+      border-radius: 32px;
+      padding: 32px;
+      box-shadow: 0 20px 45px rgba(15, 23, 42, 0.10);
+    }
+    .book-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 18px;
+      background: #f1f5f9;
+      display: grid;
+      place-items: center;
+      margin-bottom: 20px;
+    }
+    .eyebrow {
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    blockquote {
+      margin: 0 0 12px;
+      font-size: 26px;
+      line-height: 1.25;
+      font-weight: 800;
+    }
+    .reference {
+      color: #64748b;
+      font-weight: 700;
+      margin: 0 0 24px;
+    }
+    .message {
+      color: #334155;
+      line-height: 1.7;
+      margin: 0 0 24px;
+    }
+    .prayer {
+      background: #f8fafc;
+      border-radius: 24px;
+      padding: 20px;
+      margin-top: 12px;
+    }
+    .prayer-title {
+      font-weight: 800;
+      margin: 0 0 8px;
+    }
+    .prayer p {
+      color: #334155;
+      line-height: 1.7;
+      margin: 0;
+    }
+    .copy-btn {
+      width: 100%;
+      min-height: 56px;
+      margin-top: 20px;
+      border-radius: 20px;
+      border: 1px solid #e2e8f0;
+      background: #fff;
+      color: #0f172a;
+      font-weight: 800;
+      font-size: 15px;
+    }
+    .copy-btn.active {
+      border-color: #10b981;
+      background: #ecfdf5;
+      color: #047857;
+    }
+    .feedback {
+      margin-top: 14px;
+      border-radius: 18px;
+      background: #f8fafc;
+      color: #475569;
+      padding: 12px;
+      font-size: 14px;
+      display: none;
+    }
+    .empty {
+      text-align: center;
+      padding: 48px 8px;
+    }
+    .empty h2 {
+      font-size: 26px;
+      margin: 0 0 12px;
+    }
+    .empty p {
+      color: #475569;
+      line-height: 1.7;
+      margin: 0;
+    }
+    .learn {
+      margin-top: 72px;
+      background: #fff;
+      border-radius: 32px;
+      padding: 32px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+    }
+    .learn h2 {
+      font-size: 34px;
+      margin: 0 0 22px;
+      letter-spacing: -0.04em;
+    }
+    .learn-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .learn-card {
+      background: #f8fafc;
+      border-radius: 24px;
+      padding: 22px;
+    }
+    .learn-card h3 {
+      margin: 0 0 10px;
+      font-size: 17px;
+    }
+    .learn-card p {
+      color: #475569;
+      font-size: 14px;
+      line-height: 1.65;
+      margin: 0;
+    }
+    @media (max-width: 860px) {
+      .container { padding-top: 24px; }
+      nav { margin-bottom: 36px; }
+      .hero { grid-template-columns: 1fr; }
+      .search-row { flex-direction: column; }
+      .primary-btn { width: 100%; }
+      .card { padding: 24px; scroll-margin-top: 18px; }
+      blockquote { font-size: 23px; }
+      .learn-grid { grid-template-columns: 1fr; }
+      .learn { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <nav>
+      <div class="brand">
+        <div class="brand-icon">✦</div>
+        <span>Uma Palavra Pra Hoje</span>
+      </div>
+      <a href="#quem-e-deus">Conheça Deus</a>
+    </nav>
+
+    <section class="hero">
+      <div>
+        <div class="pill">♡ Uma mensagem bíblica para o seu momento</div>
+        <h1>O que você está precisando hoje?</h1>
+        <p class="subtitle">
+          Escreva em poucas palavras o que está pesando no seu coração, ou escolha um tema.
+          Vamos te mostrar uma Palavra, uma reflexão e uma oração curta.
+        </p>
+
+        <div class="search-box">
+          <div class="search-row">
+            <div class="input-wrap">
+              <span class="input-icon">⌕</span>
+              <input id="entrada" placeholder="Ex: estou preocupado com dinheiro" />
+            </div>
+            <button id="buscar" class="primary-btn">Receber Palavra →</button>
+          </div>
+        </div>
+
+        <div id="chips" class="chips"></div>
+      </div>
+
+      <div id="resposta" class="card">
+        <div id="resposta-vazia" class="empty">
+          <div class="book-icon" style="margin-left:auto;margin-right:auto;">📖</div>
+          <h2>Uma Palavra pode encontrar você hoje.</h2>
+          <p>Digite o que você está vivendo ou escolha um dos temas para começar.</p>
+        </div>
+
+        <div id="resposta-conteudo" style="display:none;">
+          <div class="book-icon">📖</div>
+          <div id="resposta-label" class="eyebrow"></div>
+          <blockquote id="versiculo"></blockquote>
+          <p id="referencia" class="reference"></p>
+          <p id="mensagem" class="message"></p>
+          <div class="prayer">
+            <div class="prayer-title">Oração</div>
+            <p id="oracao"></p>
+          </div>
+          <button id="copiar" class="copy-btn">Copiar Mensagem</button>
+          <p id="feedback" class="feedback"></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="quem-e-deus" class="learn">
+      <div class="eyebrow">Comece por aqui</div>
+      <h2>Quem é Deus? E quem é Jesus?</h2>
+      <div class="learn-grid">
+        <article class="learn-card">
+          <h3>Quem é Deus?</h3>
+          <p>Ele não é distante. Deus se revela como alguém que conhece, ama e chama você para perto.</p>
+        </article>
+        <article class="learn-card">
+          <h3>Quem é Jesus?</h3>
+          <p>Jesus veio mostrar o coração de Deus, oferecer perdão e abrir um caminho de relacionamento com Ele.</p>
+        </article>
+        <article class="learn-card">
+          <h3>O que é fé?</h3>
+          <p>Mais do que regras, a fé cristã fala sobre ser encontrado, restaurado e transformado por Deus.</p>
+        </article>
+        <article class="learn-card">
+          <h3>Quem sou eu em Deus?</h3>
+          <p>Você não é definido apenas pelos seus erros, medos ou passado. Em Deus, você é amado, visto, criado com propósito e chamado para viver uma nova história.</p>
+        </article>
+        <article class="learn-card">
+          <h3>Como me tornar filho de Deus?</h3>
+          <p>A Bíblia ensina que Deus nos convida para um relacionamento com Ele através de Jesus. Não é sobre perfeição, mas sobre abrir o coração e confiar nEle.</p>
+        </article>
+        <article class="learn-card">
+          <h3>Deus ainda se importa comigo?</h3>
+          <p>Mesmo em dias difíceis, Deus continua vendo sua dor, ouvindo suas orações e oferecendo amor, cuidado e esperança para recomeçar.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const respostaGenerica = {
+      id: "generico",
+      label: "Acolhimento",
+      versiculo: "O Senhor está perto dos que têm o coração quebrantado e salva os de espírito abatido.",
+      referencia: "Salmo 34:18",
+      mensagem: "Talvez a palavra que você escreveu ainda não esteja mapeada, mas Deus conhece exatamente o que você está vivendo. Ele se aproxima de quem está cansado, ferido ou sem saber por onde começar.",
+      oracao: "Deus, encontra meu coração neste momento. Me dá paz, direção e força para dar o próximo passo. Amém."
+    };
+
+    const respostasPorTema = {
+      ansiedade: [
+        ["Filipenses 4:6", "Não andem ansiosos por coisa alguma, mas em tudo, pela oração e súplicas, apresentem seus pedidos a Deus.", "Deus não trata sua ansiedade como fraqueza. Ele te convida a transformar preocupação em conversa com Ele, um passo de cada vez.", "Deus, acalma meu coração. Me ajuda a confiar em Ti mesmo quando eu não consigo controlar tudo. Amém."],
+        ["1 Pedro 5:7", "Lancem sobre ele toda a sua ansiedade, porque ele tem cuidado de vocês.", "Você não precisa carregar tudo sozinho. Deus se importa profundamente com aquilo que pesa no seu coração e deseja caminhar com você neste processo.", "Pai, hoje eu entrego minhas preocupações a Ti. Cuida daquilo que está fora do meu controle e me ajuda a descansar na tua presença. Amém."],
+        ["Salmos 4:8", "Em paz me deito e logo adormeço, pois só tu, Senhor, me fazes viver em segurança.", "Mesmo em dias turbulentos, Deus pode trazer descanso para sua mente, segurança para seu coração e esperança para continuar avançando.", "Senhor, me ajuda a descansar em Ti e encontrar paz verdadeira mesmo em meio às incertezas e preocupações deste momento. Amém."],
+        ["Provérbios 12:25", "O coração ansioso deprime o homem, mas uma palavra bondosa o anima.", "Uma palavra de Deus pode mudar completamente a direção do seu dia. Existe esperança mesmo em meio à ansiedade e ao cansaço emocional.", "Deus, fala comigo hoje, renova minhas forças e me ajuda a continuar mesmo quando tudo parece pesado demais. Amém."]
+      ],
+      medo: [
+        ["Isaías 41:10", "Não temas, porque eu sou contigo.", "Mesmo quando o medo parece maior que você, Deus continua ao seu lado e permanece presente em cada detalhe da sua caminhada.", "Senhor, me dá coragem para enfrentar este dia com confiança, sabendo que tua presença continua comigo. Amém."],
+        ["Salmos 27:1", "O Senhor é a minha luz e a minha salvação; de quem terei temor?", "Quando Deus ilumina o caminho, o medo perde força e o coração encontra direção mesmo nos momentos mais difíceis.", "Pai, me ajuda a confiar mais na tua presença do que nos meus medos e inseguranças diárias. Amém."],
+        ["Josué 1:9", "Seja forte e corajoso.", "Você pode não controlar tudo o que está acontecendo agora, mas Deus continua guiando seus passos com cuidado e amor.", "Deus, fortalece meu coração para continuar caminhando mesmo quando eu me sentir cansado ou inseguro. Amém."],
+        ["Salmos 56:3", "Quando estou com medo, confio em ti.", "Confiar em Deus não elimina todos os medos imediatamente, mas muda completamente a forma como você atravessa cada um deles.", "Senhor, transforma meu medo em confiança e me ajuda a lembrar que Tu continuas comigo em todo momento. Amém."]
+      ],
+      financeiro: [
+        ["Filipenses 4:19", "O meu Deus suprirá todas as necessidades de vocês.", "Deus conhece suas necessidades e pode abrir caminhos inesperados, trazendo direção, sabedoria e paz para lidar com cada decisão.", "Pai, me dá sabedoria, provisão e paz neste momento financeiro. Guia meus passos e sustenta meu coração. Amém."],
+        ["Mateus 6:33", "Busquem, pois, em primeiro lugar o Reino de Deus.", "Mesmo em meio às preocupações financeiras, Deus continua cuidando da sua vida e pode te ensinar a caminhar com sabedoria.", "Deus, guia minhas decisões, sustenta minha casa e me ajuda a confiar em Ti mesmo quando eu não vejo saída. Amém."],
+        ["Salmos 37:5", "Entregue o seu caminho ao Senhor.", "Talvez você não veja solução agora, mas Deus ainda está escrevendo sua história e pode abrir portas no tempo certo.", "Senhor, abre portas, me dá direção e me ajuda a não perder a esperança diante das dificuldades. Amém."],
+        ["Salmos 37:25", "Nunca vi o justo desamparado.", "A provisão de Deus também pode vir através de direção, oportunidades, pessoas certas e decisões tomadas com sabedoria.", "Pai, cuida de cada detalhe da minha vida financeira e me ensina a viver com fé, equilíbrio e responsabilidade. Amém."]
+      ],
+      solidao: [
+        ["Salmos 27:10", "O Senhor me acolherá.", "Mesmo quando ninguém parece entender sua dor, Deus permanece perto e conhece aquilo que você sente em silêncio.", "Pai, me ajuda a sentir tua presença hoje e a lembrar que eu nunca estou completamente sozinho. Amém."],
+        ["Hebreus 13:5", "Nunca o deixarei, nunca o abandonarei.", "Você não está esquecido. Deus continua presente na sua história, mesmo nos dias em que tudo parece vazio.", "Senhor, me lembra que não estou sozinho e aproxima de mim pessoas que também revelem teu cuidado. Amém."],
+        ["Salmos 34:18", "Perto está o Senhor dos que têm o coração quebrantado.", "Deus se aproxima especialmente dos corações feridos e oferece consolo para os dias em que faltam forças.", "Deus, abraça meu coração neste momento e renova dentro de mim a certeza do teu amor. Amém."],
+        ["Salmos 147:3", "Ele cura os de coração quebrantado.", "Existe cura e esperança mesmo depois da solidão. Deus pode restaurar lugares internos que pareciam esquecidos.", "Pai, restaura minhas emoções, renova minha esperança e me ajuda a viver novos começos contigo. Amém."]
+      ],
+      culpa: [
+        ["1 João 1:9", "Se confessarmos os nossos pecados, ele é fiel e justo para nos perdoar.", "Em Deus existe perdão verdadeiro e oportunidade de recomeçar, não porque você merece, mas porque Ele te ama.", "Jesus, me ajuda a receber teu perdão e a caminhar livre da culpa que tenta me prender ao passado. Amém."],
+        ["Romanos 8:1", "Agora já não há condenação para os que estão em Cristo Jesus.", "Seu passado não define quem você pode se tornar em Deus. Em Jesus, existe uma nova identidade para você.", "Pai, cura minha culpa, me ensina a seguir em frente e me ajuda a viver como alguém perdoado. Amém."],
+        ["Salmos 51:10", "Cria em mim um coração puro.", "Deus não apenas perdoa; Ele também transforma. O recomeço com Ele alcança escolhas, desejos e atitudes.", "Senhor, transforma meu coração, minhas atitudes e me ajuda a viver uma mudança verdadeira. Amém."],
+        ["Lamentações 3:22-23", "As misericórdias do Senhor se renovam a cada manhã.", "Todo dia pode ser um novo começo com Deus. A misericórdia dele alcança até as áreas mais quebradas da sua vida.", "Obrigado, Deus, porque teu amor me permite recomeçar e tua misericórdia me encontra outra vez. Amém."]
+      ],
+      proposito: [
+        ["Jeremias 29:11", "Porque sou eu que conheço os planos que tenho para vocês.", "Mesmo quando tudo parece confuso, Deus continua guiando sua história com cuidado, propósito e amor.", "Senhor, me mostra o caminho que devo seguir e me ajuda a confiar nos teus planos para minha vida. Amém."],
+        ["Jeremias 31:17", "Há esperança para o seu futuro.", "Sua vida tem valor, direção e propósito em Deus. O futuro não precisa ser definido apenas pelo medo de hoje.", "Pai, me ajuda a enxergar esperança novamente e a caminhar com fé em direção ao que preparaste para mim. Amém."],
+        ["Provérbios 20:24", "Os passos de um homem são dirigidos pelo Senhor.", "Nem sempre você entenderá tudo agora, mas Deus continua conduzindo seus passos, mesmo quando o caminho parece incerto.", "Deus, dirige minhas decisões, meu futuro e me ajuda a reconhecer tua voz no caminho. Amém."],
+        ["Efésios 2:10", "Vocês são criação de Deus.", "Você foi criado com propósito, identidade e valor. Sua vida não é um acaso nem está fora do olhar de Deus.", "Pai, me ajuda a viver aquilo que preparaste para mim e a reconhecer o valor que recebo de Ti. Amém."]
+      ],
+      doenca: [
+        ["Isaías 40:29", "Ele fortalece o cansado e dá grande vigor ao que está sem forças.", "Mesmo em meio à doença, Deus pode renovar suas forças e trazer consolo para o corpo, a mente e o coração.", "Senhor, sustenta meu corpo e meu coração neste processo, trazendo força, paz e esperança. Amém."],
+        ["Salmos 41:3", "O Senhor o susterá em seu leito de enfermidade.", "Deus não está distante da sua dor; Ele continua perto e pode sustentar você em cada etapa do cuidado.", "Pai, traz paz, força e cuidado neste momento de saúde. Guia também cada decisão necessária. Amém."],
+        ["Eclesiastes 3:1", "Para tudo há uma ocasião certa.", "Mesmo em tempos difíceis, Deus continua trabalhando silenciosamente e sustentando você em meio às incertezas.", "Deus, me ajuda a atravessar este momento com esperança, paciência e confiança na tua presença. Amém."],
+        ["2 Coríntios 12:9", "A minha graça te basta.", "A graça de Deus pode sustentar você até nos dias mais difíceis, quando as respostas parecem poucas e o cansaço é grande.", "Senhor, me fortalece mesmo nos dias em que me sinto fraco e renova minha esperança em Ti. Amém."]
+      ]
+    };
+
+    const temas = [
+      { id: "ansiedade", label: "Ansiedade", palavrasChave: ["ansioso", "ansiosa", "ansiedade", "preocupado", "preocupada", "preocupação", "preocupacao", "medo do futuro", "insegurança", "inseguranca"] },
+      { id: "medo", label: "Medo", palavrasChave: ["medo", "assustado", "assustada", "temor", "inseguro", "insegura"] },
+      { id: "financeiro", label: "Dificuldade financeira", palavrasChave: ["dinheiro", "financeiro", "financeira", "dívida", "divida", "desemprego", "contas", "trabalho", "emprego", "salário", "salario"] },
+      { id: "solidao", label: "Solidão", palavrasChave: ["sozinho", "sozinha", "solidão", "solidao", "ninguém", "ninguem", "abandonado", "abandonada"] },
+      { id: "culpa", label: "Culpa / Recomeço", palavrasChave: ["culpa", "errei", "erro", "perdão", "perdao", "pecado", "recomeçar", "recomecar", "vergonha"] },
+      { id: "proposito", label: "Propósito", palavrasChave: ["propósito", "proposito", "sentido", "direção", "direcao", "futuro", "chamado", "vida"] },
+      { id: "doenca", label: "Doença / Saúde", palavrasChave: ["doença", "doenca", "doente", "enfermo", "enferma", "enfermidade", "saúde", "saude", "hospital", "dor", "tratamento", "diagnóstico", "diagnostico", "cura", "curar"] }
+    ];
+
+    let resultadoAtual = null;
+
+    function normalizarTexto(texto) {
+      return texto.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    }
+
+    function garantirTamanhoMinimo(texto, minimo, complemento) {
+      return texto.length >= minimo ? texto : `${texto} ${complemento}`;
+    }
+
+    function formatarResposta(tema, dados) {
+      return {
+        id: tema.id,
+        label: tema.label,
+        referencia: dados[0],
+        versiculo: dados[1],
+        mensagem: garantirTamanhoMinimo(dados[2], 129, "Deus continua presente mesmo nos dias difíceis e pode trazer direção, esperança e força para continuar caminhando com fé."),
+        oracao: garantirTamanhoMinimo(dados[3], 103, "Que tua presença renove minhas forças, ilumine meus pensamentos e fortaleça meu coração neste momento. Amém.")
+      };
+    }
+
+    function respostaAleatoriaDoTema(tema) {
+      const respostas = respostasPorTema[tema.id] || [];
+      const resposta = respostas[Math.floor(Math.random() * respostas.length)];
+      return resposta ? formatarResposta(tema, resposta) : respostaGenerica;
+    }
+
+    function encontrarTema(texto) {
+      const normalizado = normalizarTexto(texto);
+      const tema = temas.find((item) =>
+        item.palavrasChave.some((palavra) => normalizado.includes(normalizarTexto(palavra)))
+      );
+      return tema ? respostaAleatoriaDoTema(tema) : respostaGenerica;
+    }
+
+    function montarTextoCompartilhamento(resultado) {
+      return `Uma Palavra Pra Hoje\n\n${resultado.referencia}\n“${resultado.versiculo}”\n\n${resultado.mensagem}\n\nOração:\n${resultado.oracao}`;
+    }
+
+    function renderizarResposta(resultado) {
+      resultadoAtual = resultado;
+      document.getElementById("resposta-vazia").style.display = "none";
+      document.getElementById("resposta-conteudo").style.display = "block";
+      document.getElementById("resposta-label").textContent = `Palavra para ${resultado.label}`;
+      document.getElementById("versiculo").textContent = `“${resultado.versiculo}”`;
+      document.getElementById("referencia").textContent = resultado.referencia;
+      document.getElementById("mensagem").textContent = resultado.mensagem;
+      document.getElementById("oracao").textContent = resultado.oracao;
+      document.getElementById("feedback").style.display = "none";
+      document.getElementById("resposta").scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    function buscar() {
+      const entrada = document.getElementById("entrada");
+      const texto = entrada.value.trim();
+      if (!texto) return;
+      renderizarResposta(encontrarTema(texto));
+    }
+
+    async function copiarMensagem() {
+      if (!resultadoAtual) return;
+      const texto = montarTextoCompartilhamento(resultadoAtual);
+      const feedback = document.getElementById("feedback");
+      const botao = document.getElementById("copiar");
+
+      try {
+        await navigator.clipboard.writeText(texto);
+        botao.classList.add("active");
+        botao.textContent = "Mensagem copiada ✓";
+        feedback.textContent = "Mensagem copiada. Agora você pode colar onde quiser.";
+        feedback.style.display = "block";
+        setTimeout(() => {
+          botao.classList.remove("active");
+          botao.textContent = "Copiar Mensagem";
+        }, 1800);
+      } catch (erro) {
+        feedback.textContent = "Não consegui copiar automaticamente neste navegador. Selecione e copie o texto manualmente.";
+        feedback.style.display = "block";
+      }
+    }
+
+    function inicializar() {
+      const chips = document.getElementById("chips");
+      temas.forEach((tema) => {
+        const botao = document.createElement("button");
+        botao.className = "chip";
+        botao.type = "button";
+        botao.textContent = tema.label;
+        botao.addEventListener("click", () => {
+          document.getElementById("entrada").value = "";
+          renderizarResposta(respostaAleatoriaDoTema(tema));
+        });
+        chips.appendChild(botao);
+      });
+
+      document.getElementById("buscar").addEventListener("click", buscar);
+      document.getElementById("entrada").addEventListener("keydown", (evento) => {
+        if (evento.key === "Enter") buscar();
+      });
+      document.getElementById("copiar").addEventListener("click", copiarMensagem);
+    }
+
+    inicializar();
+  </script>
+</body>
+</html>
